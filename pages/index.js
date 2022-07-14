@@ -6,14 +6,17 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Next.js Starter!</title>
+        <title>Next.js Example Project</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <Header title="Welcome to my app!" />
+        <Header title="Welcome!" />
         <p className="description">
-          Get started by editing <code>pages/index.js</code>
+          Frontend will consume <code>/api/post</code> to proxy API request methods
+        </p>
+        <p className="description">
+          Backend is currently consumed via GraphQL/Apollo
         </p>
       </main>
 
