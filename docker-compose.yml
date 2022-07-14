@@ -1,0 +1,48 @@
+version: "3.9"
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile.next
+    ports:
+      - "8000:${NEXTPORT}"
+    volumes:
+      - .:/var/app
+    links:
+      - redis
+
+  apollo-server:
+    build:
+      context: ./
+      dockerfile: Dockerfile.apollo
+    # image: rags:latest
+    volumes:
+      - ./apollo:/var/app
+    depends_on:
+      - mongo
+    ports:
+      - "8200:${APOLLOPORT}"
+    environment:
+      DATABASE_URL: "mongodb://${MONGODBUSER}:${MONGODBPASS}@mongo:${MONGODBPORT}/${MONGODBNAME}?authSource=admin"
+
+  redis:
+    image: redis
+
+  mongo:
+    image: mongo
+    restart: always
+    volumes:
+      - ./data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "${MONGODBUSER}"
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGODBPASS}"
+
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: "${MONGODBUSER}"
+      ME_CONFIG_MONGODB_ADMINPASSWORD: "${MONGODBPASS}"
+      ME_CONFIG_MONGODB_URL: "mongodb://${MONGODBUSER}:${MONGODBPASS}@mongo:${MONGODBPORT}/"

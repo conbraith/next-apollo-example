@@ -1,0 +1,23 @@
+{
+  "scripts": {
+    "start": "node index.js",
+    "start:lambda": "netlify-lambda serve",
+    "build": "react-scripts build",
+    "build:lambda": "netlify-lambda build"
+  },
+  "dependencies": {
+    "@apollo/utils.keyvadapter": "^1.1.0",
+    "@keyv/redis": "^2.3.7",
+    "apollo-cache-control": "^0.14.0",
+    "apollo-server": "^3.10.0",
+    "apollo-server-lambda": "^3.10.0",
+    "graphql": "^16.5.0",
+    "keyv": "^4.3.2",
+    "mongoose": "^6.4.4",
+    "netlify-lambda": "^2.0.15",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  }
+}

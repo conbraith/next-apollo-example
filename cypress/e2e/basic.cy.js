@@ -7,7 +7,7 @@ describe('sample test', () => {
     cy.get('h1')
     .contains('Welcome to my app!');
   })
-  it('renders the Netlify logo image', () => {
+  it('renders the logo image', () => {
     cy.get('img')
     .should('be.visible')
     .and(($img) => {

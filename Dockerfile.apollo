@@ -1,0 +1,15 @@
+FROM node:18-alpine
+WORKDIR /var/app
+
+RUN yarn install
+
+# RUN apk update \
+#   && apk add curl python --no-cache --virtual build-dependencies build-base gcc
+
+# HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+#   CMD curl -f http://localhost:$PORT/version || exit 1
+# RUN yarn run start
+
+EXPOSE ${APOLLOPORT}
+CMD ["node", "index.js"]
+# CMD ["sleep", "12345"]
